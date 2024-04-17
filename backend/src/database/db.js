@@ -4,7 +4,7 @@ const dotenv = require("dotenv")
 // .env Configurations
 dotenv.config();
 
-const uri = process.env.MONGO_URL
+const uri = "mongodb+srv://mafnan2018:sUv2Z3HPmWPeb7se@starter.rvg844a.mongodb.net/alank"
 
 const connection = () => {
     mongoose.connect(uri, {

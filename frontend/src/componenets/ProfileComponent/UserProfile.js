@@ -28,12 +28,12 @@ const Profiles = () => {
     }, [id]);
 
     const getPost = useCallback((p = 10) => {
-        let model = { pageSize: p, userId: user._id }
+        let model = { pageSize: p, userId: user?._id }
         request(ApiUrl + "/posts", model, "post", (res) => {
             setPosts(res.data)
             console.log(res.data)
         })
-    }, [user._id]);
+    }, [user?._id]);
 
     return (
         <>
@@ -41,7 +41,7 @@ const Profiles = () => {
                 <div className="my-4">
                     <div className="col-md-8 mx-auto">
                         <div className="text-white bg-dark rounded-3 pb-2 profile-header pt-3">
-                            {admin._id === user._id && (
+                            {admin?._id === user?._id && (
                                 <button
                                     className="btn btn-sm text-white text-end me-3 pt-2"
                                     data-bs-toggle="modal"
@@ -52,29 +52,29 @@ const Profiles = () => {
                             <img
                                 alt='...'
                                 className="profile-page-img mx-5 mt-1 mb-3"
-                                src={ApiUrl + "/" + user.profileImage.path} />
+                                src={ApiUrl + "/" + user?.profileImage?.path} />
                             <div className="bg-profile-info mx-5 p-3 mb-3 rounded-3">
-                                <h5 className="text-warning">{user.name}</h5>
-                                <p style={{ margin: "0" }} className="text-white">{user.profession}</p>
-                                <p style={{ margin: "0" }} className="text-white">{user.workPlace}</p>
-                                <p style={{ margin: "0" }} className="text-white">{user.location}</p>
+                                <h5 className="text-warning">{user?.name}</h5>
+                                <p style={{ margin: "0" }} className="text-white">{user?.profession}</p>
+                                <p style={{ margin: "0" }} className="text-white">{user?.workPlace}</p>
+                                <p style={{ margin: "0" }} className="text-white">{user?.location}</p>
                                 <a
-                                    href={user.webPage}
+                                    href={user?.webPage}
                                     target="_blank"
                                     rel="noreferrer"
                                     style={{ margin: "0" }}
                                     className="text-info">
-                                    {user.webPage}
+                                    {user?.webPage}
                                 </a>
                             </div>
                         </div>
                         <div className="text-white bg-dark rounded-3 pb-2 mt-4 p-4">
                             <h5 className="text-warning">About Me</h5>
                             <hr />
-                            <p>{user.about}</p>
+                            <p>{user?.about}</p>
                         </div>
                         {posts.map((val, index) => {
-                            if (user._id === val.users[0]._id) {
+                            if (user?._id === val.users[0]._id) {
                                 return (
                                     <Posts
                                         getPost={getPost}
